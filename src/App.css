@@ -1,0 +1,515 @@
+/* Reset default margins and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+}
+
+#root {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.game-container {
+  width: 100vw;
+  background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.game-header {
+  width: 100%;
+  background-color: #2c3e50;
+  color: white;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.resources-display {
+  display: flex;
+  gap: 2rem;
+}
+
+.resource-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+
+.resource-icon {
+  font-size: 1.5rem;
+}
+
+.resource-count {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.resource-label {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.game-main {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 5%;
+}
+
+.processing-section {
+  width: 65%;
+  min-width: 300px;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: auto;
+}
+
+.wood-stack-section {
+  width: 30%;
+  min-width: 300px;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.worker-section {
+  width: 25%;
+  min-width: 300px;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: fit-content;
+}
+
+.upgrades-section {
+  width: 30%;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.upgrades-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.upgrade-item {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.upgrade-info h3 {
+  color: #2c3e50;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+}
+
+.upgrade-info p {
+  color: #666;
+  margin: 0 0 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+.upgrade-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.upgrade-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.upgrade-button:hover:not(:disabled) {
+  background-color: #45a049;
+}
+
+.upgrade-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.upgrade-requirement {
+  font-size: 0.9rem;
+  color: #dc3545;
+  text-align: center;
+}
+
+.worker-level {
+  font-size: 0.9rem;
+  text-align: center;
+  color: #4caf50;
+  font-weight: bold;
+}
+
+.wood-stack-container {
+  position: relative;
+  width: 100%;
+  height: calc(100% - 60px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.wood-stack {
+  position: relative;
+  width: 100px;
+  height: 100%;
+  max-height: 400px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.wood-piece {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 10px;
+  background-color: #8b4513;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.wood-piece:nth-child(odd) {
+  background-color: #a0522d;
+}
+
+.stack-counter {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  color: #2c3e50;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Add a subtle animation when new pieces are added */
+@keyframes stackGrow {
+  from {
+    transform: translateX(-50%) translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+}
+
+.wood-piece {
+  animation: stackGrow 0.3s ease-out;
+}
+
+/* Add a subtle shadow to the stack */
+.wood-stack::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), transparent);
+  pointer-events: none;
+}
+
+.processing-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+h2 {
+  color: #2c3e50;
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.processing-status {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.process-item {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.process-label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+}
+
+.process-progress {
+  background-color: #e9ecef;
+  height: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #4caf50;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #2c3e50;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.cooldown-timer {
+  background-color: #fff3cd;
+  color: #856404;
+  padding: 0.75rem;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.worker-status {
+  margin-top: 1rem;
+}
+
+.health-bar {
+  width: 100%;
+  height: 15px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.health-fill {
+  height: 100%;
+  background-color: #4caf50;
+  transition: width 0.3s ease;
+}
+
+.health-text {
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.button-container {
+  position: relative;
+}
+
+.tooltip {
+  visibility: hidden;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #2c3e50;
+  color: white;
+  text-align: center;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  margin-bottom: 8px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 1;
+}
+
+.tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #2c3e50 transparent transparent transparent;
+}
+
+.button-container:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+button {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.1rem;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.1s ease, background-color 0.2s ease;
+}
+
+.click-button {
+  background-color: #4caf50;
+}
+
+.click-button:hover {
+  background-color: #45a049;
+}
+
+.split-button {
+  background-color: #2196f3;
+}
+
+.split-button:hover {
+  background-color: #1976d2;
+}
+
+.split-wood-button {
+  background-color: #ff9800;
+}
+
+.split-wood-button:hover {
+  background-color: #f57c00;
+}
+
+.split-round-button {
+  background-color: #9c27b0;
+}
+
+.split-round-button:hover {
+  background-color: #7b1fa2;
+}
+
+.split-wood-from-round-button {
+  background-color: #e91e63;
+}
+
+.split-wood-from-round-button:hover {
+  background-color: #c2185b;
+}
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+/* Update responsive design */
+@media (max-width: 1200px) {
+  .header-content {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .worker-status-header {
+    width: 100%;
+  }
+
+  .game-main {
+    flex-direction: column;
+    height: auto;
+    overflow-y: auto;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .processing-section,
+  .upgrades-section {
+    width: 90%;
+    max-width: 600px;
+  }
+}
