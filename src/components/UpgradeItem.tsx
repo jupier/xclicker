@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 interface UpgradeItemProps {
   title: string;
@@ -17,8 +17,16 @@ export const UpgradeItem: React.FC<UpgradeItemProps> = ({
   woodPieces,
   onUpgrade,
 }) => {
+  const [isUpgraded, setIsUpgraded] = useState(false);
+
+  const handleUpgrade = () => {
+    onUpgrade();
+    setIsUpgraded(true);
+    setTimeout(() => setIsUpgraded(false), 500);
+  };
+
   return (
-    <div className="upgrade-item">
+    <div className={`upgrade-item ${isUpgraded ? "upgraded" : ""}`}>
       <div className="upgrade-info">
         <h3>{title}</h3>
         <p>{description}</p>
@@ -31,7 +39,7 @@ export const UpgradeItem: React.FC<UpgradeItemProps> = ({
       </div>
       <button
         className="upgrade-button"
-        onClick={onUpgrade}
+        onClick={handleUpgrade}
         disabled={woodPieces < cost}
       >
         Upgrade ({cost} wood)

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 interface ProcessingSectionProps {
   cooldown: number;
@@ -35,6 +35,14 @@ export const ProcessingSection: React.FC<ProcessingSectionProps> = ({
   getLogSplittingButtonText,
   getRoundSplittingButtonText,
 }) => {
+  const [clickedButton, setClickedButton] = useState<string | null>(null);
+
+  const handleButtonClick = (action: () => void, buttonType: string) => {
+    action();
+    setClickedButton(buttonType);
+    setTimeout(() => setClickedButton(null), 300);
+  };
+
   return (
     <section className="processing-section">
       <div className="processing-header">
@@ -49,8 +57,8 @@ export const ProcessingSection: React.FC<ProcessingSectionProps> = ({
       <div className="action-buttons">
         <div className="button-container">
           <button
-            className="click-button"
-            onClick={onGetLog}
+            className={`click-button ${clickedButton === "get-log" ? "shake" : ""}`}
+            onClick={() => handleButtonClick(onGetLog, "get-log")}
             disabled={
               cooldown > 0 || workerHealth < 20 * parallelProcessingLevel
             }
@@ -64,8 +72,8 @@ export const ProcessingSection: React.FC<ProcessingSectionProps> = ({
 
         <div className="button-container">
           <button
-            className="split-button"
-            onClick={onSplitLog}
+            className={`split-button ${clickedButton === "split-log" ? "shake" : ""}`}
+            onClick={() => handleButtonClick(onSplitLog, "split-log")}
             disabled={
               (currentLog === 0 && logs === 0) ||
               (currentLog === 0 && workerHealth < 10) ||
@@ -79,8 +87,8 @@ export const ProcessingSection: React.FC<ProcessingSectionProps> = ({
 
         <div className="button-container">
           <button
-            className="split-round-button"
-            onClick={onSplitRound}
+            className={`split-round-button ${clickedButton === "split-round" ? "shake" : ""}`}
+            onClick={() => handleButtonClick(onSplitRound, "split-round")}
             disabled={
               (currentRound === 0 && rounds === 0) ||
               (currentRound === 0 && workerHealth < 5) ||
