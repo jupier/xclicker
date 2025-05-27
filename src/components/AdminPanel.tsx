@@ -34,7 +34,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
         onClick={() => setIsOpen(!isOpen)}
         style={{
           position: "fixed",
-          top: "10px",
+          bottom: "10px",
           right: "10px",
           zIndex: 1000,
           background: "#ff4444",
@@ -52,7 +52,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
         <div
           style={{
             position: "fixed",
-            top: "60px",
+            bottom: "60px",
             right: "10px",
             background: "#1a202c",
             padding: "20px",
