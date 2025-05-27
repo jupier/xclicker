@@ -24,18 +24,20 @@ function App() {
 
   // Health regeneration timer
   useEffect(() => {
-    let timer: number;
+    let timer: NodeJS.Timeout | undefined;
     if (isRegenerating && workerHealth < 100) {
       timer = setInterval(() => {
         setWorkerHealth((prev) => Math.min(100, prev + regenerationRate));
       }, 500); // Reduced from 1000ms to 500ms for faster regen
     }
-    return () => clearInterval(timer);
+    return () => {
+      if (timer) clearInterval(timer);
+    };
   }, [isRegenerating, workerHealth, regenerationRate]);
 
   // Regeneration delay timer
   useEffect(() => {
-    let timer: number;
+    let timer: NodeJS.Timeout | undefined;
     if (regenerationDelay > 0) {
       timer = setInterval(() => {
         setRegenerationDelay((prev) => {
@@ -47,12 +49,14 @@ function App() {
         });
       }, 500); // Reduced from 1000ms to 500ms
     }
-    return () => clearInterval(timer);
+    return () => {
+      if (timer) clearInterval(timer);
+    };
   }, [regenerationDelay]);
 
   // Log cooldown timer
   useEffect(() => {
-    let timer: number;
+    let timer: NodeJS.Timeout | undefined;
     if (cooldown > 0 && !isInstantCooldown) {
       timer = setInterval(() => {
         setCooldown((prev) => prev - 1);
@@ -60,7 +64,9 @@ function App() {
     } else if (isInstantCooldown && cooldown > 0) {
       setCooldown(0);
     }
-    return () => clearInterval(timer);
+    return () => {
+      if (timer) clearInterval(timer);
+    };
   }, [cooldown, isInstantCooldown]);
 
   const decreaseHealth = (amount: number) => {
