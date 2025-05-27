@@ -96,6 +96,11 @@ body {
 .resource-count {
   font-size: 1.2rem;
   font-weight: bold;
+  position: relative;
+}
+
+.resource-count.animate {
+  animation: popIn 0.3s ease-out;
 }
 
 .resource-label {
@@ -438,6 +443,7 @@ button {
   transition:
     transform 0.1s ease,
     background-color 0.2s ease;
+  transform-origin: center;
 }
 
 .click-button {
@@ -514,4 +520,75 @@ button:active {
     width: 90%;
     max-width: 600px;
   }
+}
+
+/* Resource creation animations */
+@keyframes popIn {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-20px) scale(0.8);
+    opacity: 0;
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-5deg); }
+  75% { transform: rotate(5deg); }
+}
+
+@keyframes sparkle {
+  0%, 100% { 
+    filter: brightness(100%);
+    transform: scale(1);
+  }
+  50% { 
+    filter: brightness(150%);
+    transform: scale(1.1);
+  }
+}
+
+/* Apply animations to elements */
+.resource-count.animate {
+  animation: popIn 0.3s ease-out;
+}
+
+.resource-popup {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #4caf50;
+  font-weight: bold;
+  pointer-events: none;
+  animation: floatUp 0.8s ease-out forwards;
+}
+
+.upgrade-button:active {
+  animation: shake 0.3s ease-in-out;
+}
+
+.upgrade-item.upgraded {
+  animation: sparkle 0.5s ease-in-out;
+}
+
+.wood-piece.new {
+  animation: stackGrow 0.3s ease-out, sparkle 0.5s ease-in-out;
 }
