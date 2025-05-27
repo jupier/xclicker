@@ -549,17 +549,25 @@ button:active {
 }
 
 @keyframes shake {
-  0%, 100% { transform: rotate(0deg); }
-  25% { transform: rotate(-5deg); }
-  75% { transform: rotate(5deg); }
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-5deg);
+  }
+  75% {
+    transform: rotate(5deg);
+  }
 }
 
 @keyframes sparkle {
-  0%, 100% { 
+  0%,
+  100% {
     filter: brightness(100%);
     transform: scale(1);
   }
-  50% { 
+  50% {
     filter: brightness(150%);
     transform: scale(1.1);
   }
@@ -590,5 +598,7 @@ button:active {
 }
 
 .wood-piece.new {
-  animation: stackGrow 0.3s ease-out, sparkle 0.5s ease-in-out;
+  animation:
+    stackGrow 0.3s ease-out,
+    sparkle 0.5s ease-in-out;
 }
